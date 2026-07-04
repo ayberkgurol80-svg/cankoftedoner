@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Can Köfte & Döner Salonu - Çok Yakında</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,12 +22,17 @@
             --burgundy: #722f37;
         }
 
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--dark);
-            min-height: 100vh;
-            overflow-x: hidden;
             color: white;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Animated Background */
@@ -78,22 +83,24 @@
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Main Container */
+        /* Main Container - Telefona uyumlu */
         .container {
             position: relative;
             z-index: 1;
-            min-height: 100vh;
+            min-height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
         }
 
         /* Logo Section */
         .logo-section {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             animation: fadeInDown 1s ease-out;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
         .logo-placeholder {
@@ -102,27 +109,20 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 320px;
         }
 
-        /* PC Boyut */
-        @media (min-width: 769px) {
-            .logo-placeholder {
-                width: 400px;
-            }
-        }
-
-        /* Telefon Boyut */
         @media (max-width: 768px) {
             .logo-placeholder {
-                width: 90%;
-                max-width: 350px;
+                max-width: 280px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 400px) {
             .logo-placeholder {
-                width: 85%;
+                max-width: 240px;
             }
         }
 
@@ -130,8 +130,7 @@
             width: 100%;
             height: auto;
             object-fit: contain;
-            border-radius: 15px;
-            aspect-ratio: 872 / 580;
+            border-radius: 10px;
             transition: transform 0.3s ease;
         }
 
@@ -148,11 +147,11 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             animation: fadeInDown 1s ease-out 0.2s both;
+            padding: 0 10px;
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .brand-name {
                 font-size: clamp(2rem, 5vw, 3.5rem);
@@ -160,18 +159,9 @@
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .brand-name {
-                font-size: clamp(1.3rem, 6vw, 2rem);
-                letter-spacing: 3px;
-                padding: 0 15px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .brand-name {
-                font-size: 1.1rem;
+                font-size: clamp(1.1rem, 5vw, 1.6rem);
                 letter-spacing: 2px;
             }
         }
@@ -179,7 +169,7 @@
         /* Main Heading */
         .main-heading {
             text-align: center;
-            margin: 10px 0 25px 0;
+            margin: 5px 0 15px 0;
         }
 
         .coming-soon {
@@ -190,20 +180,18 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: textGlow 3s ease-in-out infinite;
-            letter-spacing: 5px;
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .coming-soon {
                 font-size: clamp(3rem, 8vw, 6rem);
+                letter-spacing: 5px;
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .coming-soon {
-                font-size: clamp(2rem, 10vw, 3.5rem);
+                font-size: clamp(1.8rem, 9vw, 3rem);
                 letter-spacing: 3px;
             }
         }
@@ -215,43 +203,41 @@
 
         /* Divider */
         .divider {
-            width: 150px;
+            width: 120px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 25px auto;
+            margin: 15px auto;
             animation: expandLine 1.5s ease-out 0.5s both;
         }
 
         @keyframes expandLine {
             from { width: 0; opacity: 0; }
-            to { width: 150px; opacity: 1; }
+            to { width: 120px; opacity: 1; }
         }
 
         /* Description */
         .description {
-            max-width: 650px;
+            max-width: 600px;
             text-align: center;
-            padding: 0 25px;
+            padding: 0 20px;
             animation: fadeInUp 1s ease-out 0.7s both;
         }
 
         .description p {
-            line-height: 1.8;
+            line-height: 1.6;
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .description p {
                 font-size: 1.15rem;
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .description p {
-                font-size: 0.95rem;
-                line-height: 1.6;
+                font-size: 0.9rem;
+                line-height: 1.5;
             }
         }
 
@@ -264,37 +250,46 @@
         .location-badge {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             background: linear-gradient(135deg, rgba(212, 168, 83, 0.2), rgba(212, 168, 83, 0.1));
             border: 1px solid rgba(212, 168, 83, 0.4);
             border-radius: 50px;
-            margin: 30px 0;
+            margin: 20px 0;
             animation: fadeInUp 1s ease-out 0.9s both;
             transition: all 0.3s ease;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .location-badge {
-                padding: 15px 30px;
+                padding: 12px 25px;
             }
 
             .location-badge span {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 letter-spacing: 3px;
+            }
+
+            .location-badge svg {
+                width: 24px;
+                height: 24px;
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .location-badge {
-                padding: 12px 22px;
-                gap: 8px;
+                padding: 10px 18px;
             }
 
             .location-badge span {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
                 letter-spacing: 2px;
+            }
+
+            .location-badge svg {
+                width: 18px;
+                height: 18px;
             }
         }
 
@@ -306,22 +301,6 @@
         .location-badge svg {
             fill: var(--gold);
             animation: pulse 2s infinite;
-        }
-
-        /* PC */
-        @media (min-width: 769px) {
-            .location-badge svg {
-                width: 26px;
-                height: 26px;
-            }
-        }
-
-        /* Telefon */
-        @media (max-width: 768px) {
-            .location-badge svg {
-                width: 22px;
-                height: 22px;
-            }
         }
 
         @keyframes pulse {
@@ -336,7 +315,7 @@
 
         /* Social Icons */
         .social-section {
-            margin-top: 25px;
+            margin-top: 20px;
             animation: fadeInUp 1s ease-out 1.1s both;
         }
 
@@ -346,25 +325,23 @@
             letter-spacing: 3px;
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .social-title {
                 font-size: 1rem;
-                margin-bottom: 18px;
+                margin-bottom: 15px;
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .social-title {
-                font-size: 0.85rem;
-                margin-bottom: 15px;
+                font-size: 0.8rem;
+                margin-bottom: 12px;
             }
         }
 
         .social-icons {
             display: flex;
-            gap: 18px;
+            gap: 15px;
             justify-content: center;
         }
 
@@ -380,29 +357,27 @@
             text-decoration: none;
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .social-icon {
-                width: 55px;
-                height: 55px;
+                width: 50px;
+                height: 50px;
             }
 
             .social-icon svg {
-                width: 26px;
-                height: 26px;
+                width: 24px;
+                height: 24px;
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .social-icon {
-                width: 48px;
-                height: 48px;
+                width: 44px;
+                height: 44px;
             }
 
             .social-icon svg {
-                width: 22px;
-                height: 22px;
+                width: 20px;
+                height: 20px;
             }
         }
 
@@ -424,34 +399,32 @@
 
         /* Newsletter */
         .newsletter {
-            margin-top: 40px;
+            margin-top: 25px;
             text-align: center;
             animation: fadeInUp 1s ease-out 1.3s both;
-            padding: 0 20px;
+            padding: 0 15px;
+            width: 100%;
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .newsletter h3 {
-                font-size: 1.3rem;
-                margin-bottom: 18px;
-            }
-
-            .newsletter-form {
-                max-width: 450px;
-            }
-        }
-
-        /* Telefon */
-        @media (max-width: 768px) {
-            .newsletter h3 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-bottom: 15px;
             }
 
             .newsletter-form {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter h3 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .newsletter-form {
                 max-width: 100%;
-                width: 100%;
             }
         }
 
@@ -462,30 +435,38 @@
 
         .newsletter-form {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
             margin: 0 auto;
         }
 
+        @media (min-width: 769px) {
+            .newsletter-form {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
         .newsletter-form input {
-            flex: 1;
-            min-width: 200px;
-            padding: 16px 22px;
+            width: 100%;
+            max-width: 280px;
+            padding: 14px 18px;
             border: 2px solid rgba(212, 168, 83, 0.3);
             border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
             color: white;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             outline: none;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            text-align: center;
         }
 
-        @media (max-width: 480px) {
+        @media (min-width: 769px) {
             .newsletter-form input {
-                min-width: 100%;
-                padding: 14px 18px;
+                text-align: left;
             }
         }
 
@@ -499,23 +480,24 @@
         }
 
         .newsletter-form button {
-            padding: 16px 32px;
+            padding: 14px 28px;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             border: none;
             border-radius: 50px;
             color: var(--dark);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             letter-spacing: 1px;
+            width: 100%;
+            max-width: 280px;
         }
 
-        @media (max-width: 480px) {
+        @media (min-width: 769px) {
             .newsletter-form button {
-                width: 100%;
-                padding: 14px 25px;
+                width: auto;
             }
         }
 
@@ -526,27 +508,26 @@
 
         /* Footer */
         .footer {
-            margin-top: 50px;
+            margin-top: 30px;
             text-align: center;
             animation: fadeIn 1s ease-out 1.5s both;
-            padding: 0 20px;
+            padding: 0 15px;
+            margin-bottom: 20px;
         }
 
         .footer p {
             color: rgba(255, 255, 255, 0.4);
         }
 
-        /* PC */
         @media (min-width: 769px) {
             .footer p {
                 font-size: 0.9rem;
             }
         }
 
-        /* Telefon */
         @media (max-width: 768px) {
             .footer p {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
         }
 
@@ -563,34 +544,18 @@
 
         /* Animations */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        /* Sparkle Animation */
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--gold-light);
-            border-radius: 50%;
-            animation: sparkle 2s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
         }
 
         /* Decorative Elements */
@@ -602,35 +567,34 @@
         }
 
         .deco-circle-1 {
-            width: 350px;
-            height: 350px;
-            top: -175px;
-            right: -175px;
+            width: 250px;
+            height: 250px;
+            top: -125px;
+            right: -125px;
             animation: rotate 20s linear infinite;
         }
 
         .deco-circle-2 {
-            width: 250px;
-            height: 250px;
-            bottom: -125px;
-            left: -125px;
+            width: 180px;
+            height: 180px;
+            bottom: -90px;
+            left: -90px;
             animation: rotate 15s linear infinite reverse;
         }
 
-        /* Telefonda dekoratif halkaları küçült */
-        @media (max-width: 768px) {
+        @media (min-width: 769px) {
             .deco-circle-1 {
-                width: 200px;
-                height: 200px;
-                top: -100px;
-                right: -100px;
+                width: 350px;
+                height: 350px;
+                top: -175px;
+                right: -175px;
             }
 
             .deco-circle-2 {
-                width: 150px;
-                height: 150px;
-                bottom: -75px;
-                left: -75px;
+                width: 250px;
+                height: 250px;
+                bottom: -125px;
+                left: -125px;
             }
         }
 
@@ -737,20 +701,6 @@
             alert('🎉 ' + input.value + ' adresi kaydedildi! Açılışımızda sizi bilgilendireceğiz.');
             input.value = '';
         }
-
-        // Add dynamic sparkle effects
-        document.addEventListener('mousemove', function(e) {
-            if (Math.random() > 0.97) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                document.body.appendChild(sparkle);
-                setTimeout(function() {
-                    sparkle.remove();
-                }, 2000);
-            }
-        });
     </script>
 </body>
 </html>
