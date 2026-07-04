@@ -15,22 +15,10 @@
         }
 
         :root {
-            --gold: #E8B923;
-            --gold-light: #FFD84D;
-            --gold-dark: #C49A1A;
-            --dark: #0D0D0D;
-            --dark-light: #1A1A1A;
-            --burgundy: #722f37;
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --gold: #D4A853;
-                --gold-light: #F4D03F;
-                --gold-dark: #B8902E;
-                --dark: #111111;
-                --dark-light: #1A1A1A;
-            }
+            --gold: #D4AF37;
+            --gold-rgb: 212, 175, 55;
+            --dark: #1A1A1A;
+            --dark-secondary: #0D0D0D;
         }
 
         html, body {
@@ -42,10 +30,66 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(180deg, #0D0D0D 0%, #1A1A1A 50%, #0D0D0D 100%);
+            background: var(--dark);
             color: #FFFFFF;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1A1A1A 0%, #0D0D0D 50%, #1A1A1A 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(var(--gold-rgb), 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(114, 47, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb), 0.03) 0%, transparent 70%);
+            animation: bgPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            50% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { 
+                transform: translateY(-20vh) rotate(720deg); 
+                opacity: 0; 
+            }
         }
 
         /* Main Container */
@@ -58,6 +102,7 @@
             justify-content: flex-start;
             padding: 20px 15px;
             position: relative;
+            z-index: 1;
         }
 
         /* Logo */
@@ -89,10 +134,7 @@
             letter-spacing: 2px;
             text-align: center;
             margin-bottom: 5px;
-            background: linear-gradient(180deg, #FFD84D 0%, #E8B923 50%, #C49A1A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gold);
             animation: fadeIn 0.8s ease-out 0.1s both;
         }
 
@@ -108,18 +150,14 @@
             font-weight: 900;
             font-size: clamp(1.8rem, 10vw, 4rem);
             letter-spacing: 4px;
-            background: linear-gradient(180deg, #FFD84D 0%, #E8B923 50%, #C49A1A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 15px rgba(232, 185, 35, 0.4));
+            color: var(--gold);
         }
 
         /* Divider */
         .divider {
             width: 100px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #E8B923, transparent);
+            background: var(--gold);
             margin: 10px auto;
             animation: fadeIn 0.8s ease-out 0.3s both;
         }
@@ -139,7 +177,7 @@
         }
 
         .highlight {
-            color: #FFD84D;
+            color: var(--gold);
             font-weight: 600;
         }
 
@@ -148,8 +186,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(232, 185, 35, 0.15);
-            border: 1px solid rgba(232, 185, 35, 0.4);
+            background: rgba(var(--gold-rgb), 0.1);
+            border: 1px solid rgba(var(--gold-rgb), 0.3);
             border-radius: 50px;
             padding: 10px 20px;
             margin: 15px 0;
@@ -159,11 +197,11 @@
         .location-badge svg {
             width: 18px;
             height: 18px;
-            fill: #FFD84D;
+            fill: var(--gold);
         }
 
         .location-badge span {
-            color: #FFD84D;
+            color: var(--gold);
             font-size: clamp(0.7rem, 2.5vw, 0.9rem);
             font-weight: 500;
             letter-spacing: 2px;
@@ -191,12 +229,12 @@
         .social-icon {
             width: 48px;
             height: 48px;
-            border: 2px solid rgba(232, 185, 35, 0.5);
+            border: 2px solid rgba(var(--gold-rgb), 0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(232, 185, 35, 0.1);
+            background: rgba(var(--gold-rgb), 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -205,13 +243,14 @@
         .social-icon svg {
             width: 22px;
             height: 22px;
-            fill: #FFD84D;
+            fill: var(--gold);
         }
 
         .social-icon:hover {
-            background: #FFD84D;
-            border-color: #FFD84D;
+            background: var(--gold);
+            border-color: var(--gold);
             transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(var(--gold-rgb), 0.5);
         }
 
         .social-icon:hover svg {
@@ -229,7 +268,7 @@
         }
 
         .newsletter h3 {
-            color: #FFD84D;
+            color: var(--gold);
             font-size: clamp(0.9rem, 3vw, 1.1rem);
             letter-spacing: 2px;
             margin-bottom: 12px;
@@ -246,7 +285,7 @@
             width: 100%;
             max-width: 280px;
             padding: 14px 18px;
-            border: 2px solid rgba(232, 185, 35, 0.3);
+            border: 2px solid rgba(var(--gold-rgb), 0.3);
             border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
             color: #FFFFFF;
@@ -261,15 +300,15 @@
         }
 
         .newsletter-form input:focus {
-            border-color: #FFD84D;
-            box-shadow: 0 0 15px rgba(232, 185, 35, 0.2);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(var(--gold-rgb), 0.2);
         }
 
         .newsletter-form button {
             width: 100%;
             max-width: 280px;
             padding: 14px 25px;
-            background: linear-gradient(180deg, #FFD84D 0%, #E8B923 100%);
+            background: var(--gold);
             border: none;
             border-radius: 50px;
             color: #0D0D0D;
@@ -283,7 +322,7 @@
 
         .newsletter-form button:hover {
             transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(232, 185, 35, 0.4);
+            box-shadow: 0 5px 20px rgba(var(--gold-rgb), 0.4);
         }
 
         /* Footer */
@@ -300,7 +339,7 @@
         }
 
         .footer .heart {
-            color: #722f37;
+            color: var(--gold);
             animation: heartbeat 1.5s infinite;
         }
 
@@ -318,7 +357,7 @@
         /* Decorative Circles */
         .deco-circle {
             position: fixed;
-            border: 1px solid rgba(232, 185, 35, 0.15);
+            border: 1px solid rgba(var(--gold-rgb), 0.1);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -328,6 +367,7 @@
             height: 150px;
             top: -75px;
             right: -75px;
+            animation: rotate 25s linear infinite;
         }
 
         .deco-circle-2 {
@@ -335,29 +375,12 @@
             height: 100px;
             bottom: -50px;
             left: -50px;
+            animation: rotate 20s linear infinite reverse;
         }
 
-        /* Particles */
-        .particle {
-            position: fixed;
-            width: 3px;
-            height: 3px;
-            background: #E8B923;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 12s infinite ease-in-out;
-        }
-
-        .particle:nth-child(1) { left: 15%; animation-delay: 0s; }
-        .particle:nth-child(2) { left: 35%; animation-delay: 2s; }
-        .particle:nth-child(3) { left: 55%; animation-delay: 4s; }
-        .particle:nth-child(4) { left: 75%; animation-delay: 1s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh); opacity: 0; }
-            20% { opacity: 0.5; }
-            80% { opacity: 0.5; }
-            100% { transform: translateY(-20vh); opacity: 0; }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* PC - larger screens */
@@ -453,25 +476,43 @@
                 bottom: -100px;
                 left: -100px;
             }
+        }
 
-            .particle:nth-child(5),
-            .particle:nth-child(6),
-            .particle:nth-child(7) {
-                display: block;
+        /* Dark Mode Detection - CSS Fallback */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --gold: #F5C842;
+                --gold-rgb: 245, 200, 66;
+                --dark: #1A1A1A;
+                --dark-secondary: #0D0D0D;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --gold: #D4AF37;
+                --gold-rgb: 212, 175, 55;
+                --dark: #1A1A1A;
+                --dark-secondary: #0D0D0D;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Decorative -->
+    <!-- Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Decorative Circles -->
     <div class="deco-circle deco-circle-1"></div>
     <div class="deco-circle deco-circle-2"></div>
 
     <!-- Particles -->
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
+    <div class="particle" style="left: 15%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 45%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 75%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 85%; animation-delay: 5s;"></div>
 
     <div class="container">
         <!-- Logo -->
@@ -529,6 +570,29 @@
     </div>
 
     <script>
+        // Dark Mode Detection System
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function updateTheme(isDark) {
+            const root = document.documentElement;
+            if (isDark) {
+                root.style.setProperty('--gold', '#F5C842');
+                root.style.setProperty('--gold-rgb', '245, 200, 66');
+            } else {
+                root.style.setProperty('--gold', '#D4AF37');
+                root.style.setProperty('--gold-rgb', '212, 175, 55');
+            }
+        }
+
+        // Initial check
+        updateTheme(darkModeQuery.matches);
+
+        // Listen for changes
+        darkModeQuery.addEventListener('change', (e) => {
+            updateTheme(e.matches);
+        });
+
+        // Newsletter Form Handler
         function handleSubmit(e) {
             e.preventDefault();
             const input = e.target.querySelector('input');
