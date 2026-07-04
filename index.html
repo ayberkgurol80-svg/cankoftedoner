@@ -15,10 +15,9 @@
         }
 
         :root {
-            --gold: #D4AF37;
-            --gold-rgb: 212, 175, 55;
-            --dark: #252525;
-            --dark-secondary: #1a1a1a;
+            --gold: #F5C842;
+            --gold-rgb: 245, 200, 66;
+            --dark: #2d2d2d;
         }
 
         html, body {
@@ -46,53 +45,58 @@
             height: 100%;
             z-index: 0;
             overflow: hidden;
-            background: linear-gradient(135deg, #252525 0%, #1a1a1a 50%, #252525 100%);
+            background: linear-gradient(180deg, #2d2d2d 0%, #3a3a3a 50%, #2d2d2d 100%);
         }
 
         .bg-animation::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(var(--gold-rgb), 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(114, 47, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb), 0.05) 0%, transparent 70%);
+                radial-gradient(circle at 20% 80%, rgba(245, 200, 66, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(114, 47, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(245, 200, 66, 0.06) 0%, transparent 60%);
             animation: bgPulse 10s ease-in-out infinite;
         }
 
         @keyframes bgPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-            50% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
-        /* Floating Particles */
+        /* Floating Particles - Ekranın üstünde değil, tüm ekrana yayılsın */
         .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--gold);
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #F5C842;
             border-radius: 50%;
-            opacity: 0.6;
-            animation: float 12s infinite ease-in-out;
+            opacity: 0.7;
+            animation: float-up 15s linear infinite;
+            pointer-events: none;
         }
 
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(100vh) rotate(0deg); 
-                opacity: 0; 
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
             }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { 
-                transform: translateY(-20vh) rotate(720deg); 
-                opacity: 0; 
+            5% {
+                opacity: 0.7;
+            }
+            95% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-20vh) translateX(50px);
+                opacity: 0;
             }
         }
 
-        /* Main Container */
+        /* Main Container - Tam ortada */
         .container {
             width: 100%;
             min-height: 100vh;
@@ -105,19 +109,11 @@
             z-index: 1;
         }
 
-        /* Mobil - ortala */
-        @media (max-width: 768px) {
-            .container {
-                justify-content: center;
-                padding: 15px;
-            }
-        }
-
         /* Logo */
         .logo-section {
             width: 100%;
             max-width: 320px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             animation: fadeIn 0.8s ease-out;
         }
 
@@ -138,50 +134,53 @@
         .brand-name {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: clamp(1rem, 5vw, 1.8rem);
-            letter-spacing: 2px;
+            font-size: clamp(1.2rem, 6vw, 2rem);
+            letter-spacing: 3px;
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             color: var(--gold);
             animation: fadeIn 0.8s ease-out 0.1s both;
+            text-shadow: 0 0 20px rgba(245, 200, 66, 0.3);
         }
 
         /* Coming Soon */
         .main-heading {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
         .coming-soon {
             font-family: 'Playfair Display', serif;
             font-weight: 900;
-            font-size: clamp(1.8rem, 10vw, 4rem);
-            letter-spacing: 4px;
+            font-size: clamp(2.2rem, 12vw, 4.5rem);
+            letter-spacing: 5px;
             color: var(--gold);
+            text-shadow: 0 0 30px rgba(245, 200, 66, 0.4);
         }
 
         /* Divider */
         .divider {
-            width: 100px;
+            width: 120px;
             height: 2px;
             background: var(--gold);
-            margin: 10px auto;
+            margin: 15px auto;
             animation: fadeIn 0.8s ease-out 0.3s both;
+            box-shadow: 0 0 10px rgba(245, 200, 66, 0.4);
         }
 
         /* Description */
         .description {
             max-width: 500px;
             text-align: center;
-            padding: 0 20px;
+            padding: 0 25px;
             animation: fadeIn 0.8s ease-out 0.4s both;
         }
 
         .description p {
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(1rem, 3.5vw, 1.1rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .highlight {
@@ -193,40 +192,40 @@
         .location-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(var(--gold-rgb), 0.1);
-            border: 1px solid rgba(var(--gold-rgb), 0.3);
+            gap: 10px;
+            background: rgba(245, 200, 66, 0.12);
+            border: 1px solid rgba(245, 200, 66, 0.35);
             border-radius: 50px;
-            padding: 10px 20px;
-            margin: 15px 0;
+            padding: 12px 25px;
+            margin: 25px 0;
             animation: fadeIn 0.8s ease-out 0.5s both;
         }
 
         .location-badge svg {
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             fill: var(--gold);
         }
 
         .location-badge span {
             color: var(--gold);
-            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            font-size: clamp(0.85rem, 3vw, 1rem);
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         /* Social */
         .social-section {
-            margin: 15px 0;
+            margin: 20px 0;
             animation: fadeIn 0.8s ease-out 0.6s both;
         }
 
         .social-title {
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
         }
 
         .social-icons {
@@ -235,22 +234,22 @@
         }
 
         .social-icon {
-            width: 48px;
-            height: 48px;
-            border: 2px solid rgba(var(--gold-rgb), 0.5);
+            width: 55px;
+            height: 55px;
+            border: 2px solid rgba(245, 200, 66, 0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(var(--gold-rgb), 0.1);
+            background: rgba(245, 200, 66, 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
         }
 
         .social-icon svg {
-            width: 22px;
-            height: 22px;
+            width: 26px;
+            height: 26px;
             fill: var(--gold);
         }
 
@@ -258,70 +257,70 @@
             background: var(--gold);
             border-color: var(--gold);
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(var(--gold-rgb), 0.5);
+            box-shadow: 0 0 25px rgba(245, 200, 66, 0.5);
         }
 
         .social-icon:hover svg {
-            fill: #0D0D0D;
+            fill: #2d2d2d;
         }
 
         /* Newsletter */
         .newsletter {
             width: 100%;
-            max-width: 350px;
-            margin: 20px 0;
+            max-width: 400px;
+            margin: 25px 0;
             text-align: center;
-            padding: 0 15px;
+            padding: 0 20px;
             animation: fadeIn 0.8s ease-out 0.7s both;
         }
 
         .newsletter h3 {
             color: var(--gold);
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
         }
 
         .newsletter-form {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .newsletter-form input {
             width: 100%;
-            max-width: 280px;
-            padding: 14px 18px;
-            border: 2px solid rgba(var(--gold-rgb), 0.3);
+            max-width: 300px;
+            padding: 16px 22px;
+            border: 2px solid rgba(245, 200, 66, 0.35);
             border-radius: 50px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             color: #FFFFFF;
-            font-size: 0.9rem;
+            font-size: 1rem;
             outline: none;
             font-family: 'Poppins', sans-serif;
             text-align: center;
         }
 
         .newsletter-form input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .newsletter-form input:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 15px rgba(var(--gold-rgb), 0.2);
+            box-shadow: 0 0 20px rgba(245, 200, 66, 0.25);
         }
 
         .newsletter-form button {
             width: 100%;
-            max-width: 280px;
-            padding: 14px 25px;
+            max-width: 300px;
+            padding: 16px 30px;
             background: var(--gold);
             border: none;
             border-radius: 50px;
-            color: #0D0D0D;
+            color: #2d2d2d;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
             letter-spacing: 1px;
@@ -329,8 +328,8 @@
         }
 
         .newsletter-form button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(var(--gold-rgb), 0.4);
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(245, 200, 66, 0.5);
         }
 
         /* Footer */
@@ -341,16 +340,9 @@
             animation: fadeIn 0.8s ease-out 0.8s both;
         }
 
-        /* Mobil */
-        @media (max-width: 768px) {
-            .footer {
-                margin-top: 20px;
-            }
-        }
-
         .footer p {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
         }
 
         .footer .heart {
@@ -372,25 +364,25 @@
         /* Decorative Circles */
         .deco-circle {
             position: fixed;
-            border: 1px solid rgba(var(--gold-rgb), 0.1);
+            border: 1px solid rgba(245, 200, 66, 0.12);
             border-radius: 50%;
             pointer-events: none;
         }
 
         .deco-circle-1 {
-            width: 150px;
-            height: 150px;
-            top: -75px;
-            right: -75px;
-            animation: rotate 25s linear infinite;
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            right: -100px;
+            animation: rotate 30s linear infinite;
         }
 
         .deco-circle-2 {
-            width: 100px;
-            height: 100px;
-            bottom: -50px;
-            left: -50px;
-            animation: rotate 20s linear infinite reverse;
+            width: 150px;
+            height: 150px;
+            bottom: -75px;
+            left: -75px;
+            animation: rotate 25s linear infinite reverse;
         }
 
         @keyframes rotate {
@@ -402,113 +394,92 @@
         @media (min-width: 768px) {
             .container {
                 padding: 40px 20px;
-                justify-content: center;
             }
 
             .logo-section {
                 max-width: 450px;
-                margin-bottom: 25px;
+                margin-bottom: 30px;
             }
 
             .brand-name {
-                font-size: 2.2rem;
-                letter-spacing: 6px;
-                margin-bottom: 10px;
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+                margin-bottom: 12px;
             }
 
             .coming-soon {
-                font-size: 4.5rem;
-                letter-spacing: 8px;
+                font-size: 5rem;
+                letter-spacing: 10px;
             }
 
             .divider {
-                width: 150px;
-                margin: 20px auto;
+                width: 180px;
+                margin: 25px auto;
             }
 
             .description {
-                max-width: 600px;
-                margin-bottom: 10px;
+                max-width: 650px;
             }
 
             .description p {
-                font-size: 1.1rem;
-                line-height: 1.8;
+                font-size: 1.2rem;
+                line-height: 1.9;
             }
 
             .location-badge {
-                padding: 15px 30px;
-                gap: 12px;
+                padding: 18px 35px;
+                gap: 15px;
             }
 
             .location-badge svg {
-                width: 24px;
-                height: 24px;
+                width: 28px;
+                height: 28px;
             }
 
             .location-badge span {
-                font-size: 1rem;
-                letter-spacing: 3px;
+                font-size: 1.1rem;
+                letter-spacing: 4px;
             }
 
             .social-icon {
-                width: 55px;
-                height: 55px;
+                width: 60px;
+                height: 60px;
             }
 
             .social-icon svg {
-                width: 26px;
-                height: 26px;
+                width: 28px;
+                height: 28px;
             }
 
             .newsletter h3 {
-                font-size: 1.2rem;
-                margin-bottom: 15px;
+                font-size: 1.3rem;
+                margin-bottom: 18px;
             }
 
             .newsletter-form {
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 12px;
+                gap: 15px;
             }
 
             .newsletter-form input,
             .newsletter-form button {
-                max-width: 250px;
+                max-width: 280px;
             }
 
             .deco-circle-1 {
-                width: 300px;
-                height: 300px;
-                top: -150px;
-                right: -150px;
+                width: 400px;
+                height: 400px;
+                top: -200px;
+                right: -200px;
             }
 
             .deco-circle-2 {
-                width: 200px;
-                height: 200px;
-                bottom: -100px;
-                left: -100px;
-            }
-        }
-
-        /* Dark Mode Detection - CSS Fallback */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --gold: #F5C842;
-                --gold-rgb: 245, 200, 66;
-                --dark: #252525;
-                --dark-secondary: #1a1a1a;
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --gold: #D4AF37;
-                --gold-rgb: 212, 175, 55;
-                --dark: #252525;
-                --dark-secondary: #1a1a1a;
+                width: 300px;
+                height: 300px;
+                bottom: -150px;
+                left: -150px;
             }
         }
     </style>
@@ -521,13 +492,15 @@
     <div class="deco-circle deco-circle-1"></div>
     <div class="deco-circle deco-circle-2"></div>
 
-    <!-- Particles -->
-    <div class="particle" style="left: 15%; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-    <div class="particle" style="left: 45%; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 60%; animation-delay: 1s;"></div>
-    <div class="particle" style="left: 75%; animation-delay: 3s;"></div>
-    <div class="particle" style="left: 85%; animation-delay: 5s;"></div>
+    <!-- Particles - Ekranın farklı yerlerinde -->
+    <div class="particle" style="left: 10%; animation-delay: 0s; animation-duration: 12s;"></div>
+    <div class="particle" style="left: 25%; animation-delay: 3s; animation-duration: 14s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 6s; animation-duration: 11s;"></div>
+    <div class="particle" style="left: 55%; animation-delay: 1s; animation-duration: 16s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 8s; animation-duration: 13s;"></div>
+    <div class="particle" style="left: 85%; animation-delay: 4s; animation-duration: 15s;"></div>
+    <div class="particle" style="left: 15%; animation-delay: 10s; animation-duration: 18s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 7s; animation-duration: 12s;"></div>
 
     <div class="container">
         <!-- Logo -->
@@ -585,28 +558,6 @@
     </div>
 
     <script>
-        // Dark Mode Detection System
-        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        function updateTheme(isDark) {
-            const root = document.documentElement;
-            if (isDark) {
-                root.style.setProperty('--gold', '#F5C842');
-                root.style.setProperty('--gold-rgb', '245, 200, 66');
-            } else {
-                root.style.setProperty('--gold', '#D4AF37');
-                root.style.setProperty('--gold-rgb', '212, 175, 55');
-            }
-        }
-
-        // Initial check
-        updateTheme(darkModeQuery.matches);
-
-        // Listen for changes
-        darkModeQuery.addEventListener('change', (e) => {
-            updateTheme(e.matches);
-        });
-
         // Newsletter Form Handler
         function handleSubmit(e) {
             e.preventDefault();
