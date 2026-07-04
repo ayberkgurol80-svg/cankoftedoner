@@ -98,7 +98,7 @@
             }
         }
 
-        /* Main Container - Tam ortada */
+        /* Main Container */
         .container {
             width: 100%;
             min-height: 100vh;
@@ -106,9 +106,116 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 15px;
+            padding: 20px 15px;
             position: relative;
             z-index: 1;
+        }
+
+        /* Telefon - en üstten başlasın */
+        @media (max-width: 767px) {
+            .container {
+                justify-content: flex-start;
+                padding-top: 15px;
+            }
+        }
+
+        /* Telefon için küçük stiller */
+        @media (max-width: 767px) {
+            .logo-section {
+                max-width: 280px;
+                margin-bottom: 15px;
+            }
+
+            .brand-name {
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+                margin-bottom: 6px;
+            }
+
+            .main-heading {
+                margin-bottom: 15px;
+            }
+
+            .coming-soon {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .divider {
+                width: 100px;
+                margin: 12px auto;
+            }
+
+            .description p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .location-badge {
+                padding: 10px 20px;
+                margin: 20px 0;
+            }
+
+            .location-badge svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .location-badge span {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            .social-section {
+                margin: 15px 0;
+            }
+
+            .social-title {
+                font-size: 0.8rem;
+                margin-bottom: 12px;
+            }
+
+            .social-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .newsletter {
+                margin: 20px 0;
+            }
+
+            .newsletter h3 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                max-width: 260px;
+            }
+
+            .footer {
+                margin-top: 20px;
+            }
+
+            .deco-circle-1 {
+                width: 150px;
+                height: 150px;
+                top: -75px;
+                right: -75px;
+            }
+
+            .deco-circle-2 {
+                width: 100px;
+                height: 100px;
+                bottom: -50px;
+                left: -50px;
+            }
         }
 
         /* Logo */
@@ -392,9 +499,10 @@
             to { transform: rotate(360deg); }
         }
 
-        /* PC - larger screens */
+        /* PC - ortada */
         @media (min-width: 768px) {
             .container {
+                justify-content: center;
                 padding: 40px 20px;
             }
 
@@ -559,6 +667,11 @@
     </div>
 
     <script>
+        // Sayfa yüklendiğinde scroll'u en üste getir
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+
         // Newsletter Form Handler
         function handleSubmit(e) {
             e.preventDefault();
